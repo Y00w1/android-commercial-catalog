@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.commercialcatalog.core.navigation.NavigationWrapper
 import com.example.commercialcatalog.ui.theme.CommercialCatalogTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CommercialCatalogTheme {
-
+                NavigationWrapper()
             }
         }
     }
@@ -29,6 +30,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Preview() {
     CommercialCatalogTheme {
-
+        NavigationWrapper()
     }
 }
