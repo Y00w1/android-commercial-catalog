@@ -7,12 +7,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.commercialcatalog.catalog.components.HeaderBar
 import com.example.commercialcatalog.catalog.components.ProductList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun CatalogScreen(
+    email: String,
     viewModel: CatalogViewModel = viewModel(),
     onLogout: () -> Unit
 ) {
@@ -20,14 +22,7 @@ fun CatalogScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("Catálogo") },
-                actions = {
-                    TextButton(onClick = { onLogout() }) {
-                        Text("Cerrar sesión")
-                    }
-                }
-            )
+            HeaderBar(email = email, onLogout = onLogout)
         }
     ) { innerPadding ->
         Column(

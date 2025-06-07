@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -19,7 +20,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            CommercialCatalogTheme {
+            val darkTheme = isSystemInDarkTheme()
+            CommercialCatalogTheme(darkTheme = darkTheme) {
                 NavigationWrapper()
             }
         }
@@ -29,7 +31,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun Preview() {
-    CommercialCatalogTheme {
+    CommercialCatalogTheme(darkTheme = true) {
         NavigationWrapper()
     }
 }

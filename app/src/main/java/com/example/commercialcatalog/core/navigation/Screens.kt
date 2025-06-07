@@ -6,4 +6,4 @@ import kotlinx.serialization.Serializable
 object Login
 
 @Serializable
-object Catalog
+data class Catalog(val email: String)

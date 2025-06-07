@@ -11,9 +11,16 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.rememberAsyncImagePainter
 import com.example.commercialcatalog.model.Product
+import androidx.compose.foundation.clickable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun ProductCard(product: Product) {
+    var expanded by remember { mutableStateOf(false) }
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -30,9 +37,23 @@ fun ProductCard(product: Product) {
                 contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.width(16.dp))
-            Column {
+            Column(
+                modifier = Modifier
+                    .clickable { expanded = !expanded }
+            ) {
                 Text(text = product.name, style = MaterialTheme.typography.titleMedium)
-                Text(text = "$${product.price}", style = MaterialTheme.typography.bodyMedium)
+                Text(
+                    text = "$${product.price}",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.primary
+                )
+                if (expanded) {
+                    Text(
+                        text = product.description,
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(top = 8.dp)
+                    )
+                }
             }
         }
     }

@@ -18,13 +18,13 @@ import com.example.commercialcatalog.login.components.PasswordField
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = viewModel(),
-    navigateToCatalog: () -> Unit
+    navigateToCatalog: (String) -> Unit
 ) {
     val uiState = viewModel.uiState
     val context = LocalContext.current
 
     if (uiState.loginSuccess) {
-        navigateToCatalog()
+        navigateToCatalog(uiState.email)
     }
 
     Scaffold {
