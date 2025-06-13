@@ -47,5 +47,8 @@ class LoginViewModel : ViewModel() {
             }
         )
     }
+    fun logout() {
+        uiState = uiState.copy(loginSuccess = false, email = "")
+    }
 }
 

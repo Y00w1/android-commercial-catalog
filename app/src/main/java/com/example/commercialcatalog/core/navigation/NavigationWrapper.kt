@@ -17,7 +17,11 @@ fun NavigationWrapper() {
         }
         composable<Catalog>{ backStackEntry ->
             val catalog: Catalog = backStackEntry.toRoute()
-            CatalogScreen(email = catalog.email){navController.popBackStack()}
+            val loginViewModel = androidx.lifecycle.viewmodel.compose.viewModel<com.example.commercialcatalog.login.LoginViewModel>()
+            CatalogScreen(email = catalog.email) {
+                loginViewModel.logout()
+                navController.popBackStack()
+            }
         }
     }
 }
