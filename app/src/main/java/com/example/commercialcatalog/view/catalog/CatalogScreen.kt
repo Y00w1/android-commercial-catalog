@@ -7,23 +7,29 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.commercialcatalog.view.catalog.components.HeaderBar
 import com.example.commercialcatalog.view.catalog.components.ProductList
 import com.example.commercialcatalog.viewModel.CatalogViewModel
+import com.example.commercialcatalog.view.components.HeaderBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun CatalogScreen(
     email: String,
-    viewModel: CatalogViewModel = viewModel(),
-    onLogout: () -> Unit
+    onNavigateToTodo: () -> Unit,
+    onLogout: () -> Unit,
+    viewModel: CatalogViewModel = viewModel()
 ) {
     val products by viewModel.products.collectAsState()
 
     Scaffold(
         topBar = {
-            HeaderBar(email = email, onLogout = onLogout)
+            HeaderBar(
+                currentScreen = "catalog",
+                onNavigateToCatalog = {},
+                onNavigateToTodo = onNavigateToTodo,
+                onLogout = onLogout
+            )
         }
     ) { innerPadding ->
         Column(
