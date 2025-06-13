@@ -1,8 +1,7 @@
-package com.example.commercialcatalog.vistamodelo
+package com.example.commercialcatalog.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.util.copy
 import com.example.commercialcatalog.model.Task
 import com.example.commercialcatalog.repository.TaskRepository
 import kotlinx.coroutines.flow.MutableStateFlow
