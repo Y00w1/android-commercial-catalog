@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,7 +16,9 @@ import com.example.commercialcatalog.model.Task
 fun TaskItem(
     task: Task,
     onToggle: (Task) -> Unit,
-    onDelete: (String) -> Unit
+    onDelete: (String) -> Unit,
+    onEdit: (Task) -> Unit
+
 ) {
     Row(
         modifier = Modifier
@@ -35,5 +38,9 @@ fun TaskItem(
         IconButton(onClick = { onDelete(task.id) }) {
             Icon(Icons.Default.Delete, contentDescription = "Eliminar")
         }
+        IconButton(onClick = { onEdit(task) }) {
+            Icon(Icons.Default.Edit, contentDescription = "Editar")
+        }
+
     }
 }

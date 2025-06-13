@@ -39,4 +39,12 @@ class TaskViewModel : ViewModel() {
             loadTasks()
         }
     }
+
+    fun editTask(task: Task, newTitle: String) {
+        viewModelScope.launch {
+            repository.updateTask(task.copy(title = newTitle))
+            loadTasks()
+        }
+    }
+
 }
