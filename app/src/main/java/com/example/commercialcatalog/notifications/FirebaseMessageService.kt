@@ -1,5 +1,5 @@
 //FirebaseMessageService.kt
-package com.example.commercialcatalog.firebase
+package com.example.commercialcatalog.notifications
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage

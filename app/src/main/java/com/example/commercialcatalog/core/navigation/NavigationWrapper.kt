@@ -5,8 +5,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.example.commercialcatalog.catalog.CatalogScreen
-import com.example.commercialcatalog.login.LoginScreen
+import com.example.commercialcatalog.view.catalog.CatalogScreen
+import com.example.commercialcatalog.view.login.LoginScreen
+import com.example.commercialcatalog.viewModel.LoginViewModel
 
 @Composable
 fun NavigationWrapper() {
@@ -17,7 +18,7 @@ fun NavigationWrapper() {
         }
         composable<Catalog>{ backStackEntry ->
             val catalog: Catalog = backStackEntry.toRoute()
-            val loginViewModel = androidx.lifecycle.viewmodel.compose.viewModel<com.example.commercialcatalog.login.LoginViewModel>()
+            val loginViewModel = androidx.lifecycle.viewmodel.compose.viewModel<LoginViewModel>()
             CatalogScreen(email = catalog.email) {
                 loginViewModel.logout()
                 navController.popBackStack()

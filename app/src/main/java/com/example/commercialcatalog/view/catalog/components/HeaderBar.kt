@@ -1,4 +1,4 @@
-package com.example.commercialcatalog.catalog.components
+package com.example.commercialcatalog.view.catalog.components
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable

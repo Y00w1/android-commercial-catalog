@@ -1,4 +1,4 @@
-package com.example.commercialcatalog.catalog.components
+package com.example.commercialcatalog.view.catalog.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*

@@ -1,4 +1,4 @@
-package com.example.commercialcatalog.catalog
+package com.example.commercialcatalog.view.catalog
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
@@ -7,8 +7,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.commercialcatalog.catalog.components.HeaderBar
-import com.example.commercialcatalog.catalog.components.ProductList
+import com.example.commercialcatalog.view.catalog.components.HeaderBar
+import com.example.commercialcatalog.view.catalog.components.ProductList
+import com.example.commercialcatalog.viewModel.CatalogViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

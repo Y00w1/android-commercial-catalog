@@ -1,4 +1,4 @@
-package com.example.commercialcatalog.login
+package com.example.commercialcatalog.view.login
 
 import android.annotation.SuppressLint
 import android.widget.Toast
@@ -11,8 +11,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.commercialcatalog.login.components.EmailField
-import com.example.commercialcatalog.login.components.PasswordField
+import com.example.commercialcatalog.view.login.components.EmailField
+import com.example.commercialcatalog.view.login.components.PasswordField
+import com.example.commercialcatalog.viewModel.LoginViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable

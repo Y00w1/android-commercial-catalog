@@ -1,4 +1,4 @@
-package com.example.commercialcatalog.login.components
+package com.example.commercialcatalog.view.login.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions

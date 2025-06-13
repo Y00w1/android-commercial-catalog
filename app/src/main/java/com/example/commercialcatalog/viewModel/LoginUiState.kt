@@ -1,4 +1,4 @@
-package com.example.commercialcatalog.login
+package com.example.commercialcatalog.viewModel
 
 data class LoginUiState(
     val email: String = "",

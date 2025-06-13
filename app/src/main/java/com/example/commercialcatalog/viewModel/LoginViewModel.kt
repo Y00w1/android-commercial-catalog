@@ -1,9 +1,9 @@
-package com.example.commercialcatalog.login
+package com.example.commercialcatalog.viewModel
 
 import android.content.Context
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
-import com.example.commercialcatalog.firebase.AuthService
+import com.example.commercialcatalog.repository.AuthService
 
 class LoginViewModel : ViewModel() {
 
