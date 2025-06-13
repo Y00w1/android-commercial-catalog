@@ -12,6 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.commercialcatalog.viewModel.TaskViewModel
 import com.example.commercialcatalog.view.components.HeaderBar
+import com.example.commercialcatalog.view.todo.components.TaskItem
+import androidx.compose.foundation.lazy.items
+
 
 @Composable
 fun TaskScreen(
@@ -60,25 +63,15 @@ fun TaskScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
             LazyColumn {
-                items(tasks.size) { idx ->
-                    val task = tasks[idx]
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 4.dp)
-                    ) {
-                        Checkbox(
-                            checked = task.completed,
-                            onCheckedChange = { taskViewModel.toggleTask(task) }
-                        )
-                        Text(
-                            text = task.title,
-                            modifier = Modifier.weight(1f)
-                        )
-                    }
+                items(tasks) { task ->
+                    TaskItem(
+                        task = task,
+                        onToggle = { taskViewModel.toggleTask(it) },
+                        onDelete = { taskViewModel.deleteTask(it) }
+                    )
                 }
             }
+
         }
     }
 }
