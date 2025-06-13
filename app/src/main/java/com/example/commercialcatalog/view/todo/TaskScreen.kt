@@ -10,7 +10,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.commercialcatalog.vistamodelo.TaskViewModel
+import com.example.commercialcatalog.viewModel.TaskViewModel
 import com.example.commercialcatalog.view.components.HeaderBar
 
 @Composable
