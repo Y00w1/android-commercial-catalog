@@ -19,6 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
 import com.example.commercialcatalog.core.navigation.NavigationWrapper
 import com.example.commercialcatalog.ui.theme.CommercialCatalogTheme
+import com.google.firebase.messaging.FirebaseMessaging
+import android.util.Log
 
 class MainActivity : ComponentActivity() {
     private val requestPermissionLauncher = registerForActivityResult(
@@ -51,6 +53,13 @@ class MainActivity : ComponentActivity() {
             val darkTheme = isSystemInDarkTheme()
             CommercialCatalogTheme(darkTheme = darkTheme) {
                 askNotificationPermission()
+                FirebaseMessaging.getInstance()
+                    .subscribeToTopic("tasks")
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Log.d("FCM", "Suscrito al topic tasks")
+                        }
+                    }
                 NavigationWrapper()
             }
         }

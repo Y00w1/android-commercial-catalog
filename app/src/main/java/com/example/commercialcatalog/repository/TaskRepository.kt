@@ -6,7 +6,7 @@ import kotlinx.coroutines.tasks.await
 
 class TaskRepository {
     private val db = FirebaseFirestore.getInstance()
-    private val tasksRef = db.collection("tasks")
+    private val tasksRef = db.collection("task")
 
     suspend fun getTasks(): List<Task> =
         tasksRef.get().await().documents.mapNotNull { doc ->

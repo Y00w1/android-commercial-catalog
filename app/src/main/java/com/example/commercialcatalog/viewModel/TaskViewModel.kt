@@ -13,6 +13,9 @@ class TaskViewModel : ViewModel() {
     private val _tasks = MutableStateFlow<List<Task>>(emptyList())
     val tasks: StateFlow<List<Task>> = _tasks
 
+    private val _notificationEvent = MutableStateFlow<Pair<String, String>?>(null)
+    val notificationEvent: StateFlow<Pair<String, String>?> = _notificationEvent
+
     fun loadTasks() {
         viewModelScope.launch {
             _tasks.value = repository.getTasks()
@@ -22,6 +25,7 @@ class TaskViewModel : ViewModel() {
     fun addTask(title: String) {
         viewModelScope.launch {
             repository.addTask(Task(title = title))
+            _notificationEvent.value = "Nueva tarea" to "Se agregó: $title"
             loadTasks()
         }
     }
@@ -29,13 +33,15 @@ class TaskViewModel : ViewModel() {
     fun toggleTask(task: Task) {
         viewModelScope.launch {
             repository.updateTask(task.copy(completed = !task.completed))
+            _notificationEvent.value = "Tarea actualizada" to "Se actualizó: ${task.title}"
             loadTasks()
         }
     }
 
-    fun deleteTask(taskId: String) {
+    fun deleteTask(taskId: String, title: String) {
         viewModelScope.launch {
             repository.deleteTask(taskId)
+            _notificationEvent.value = "Tarea eliminada" to "Se eliminó: $title"
             loadTasks()
         }
     }
@@ -43,8 +49,12 @@ class TaskViewModel : ViewModel() {
     fun editTask(task: Task, newTitle: String) {
         viewModelScope.launch {
             repository.updateTask(task.copy(title = newTitle))
+            _notificationEvent.value = "Tarea editada" to "Nuevo título: $newTitle"
             loadTasks()
         }
     }
 
+    fun clearNotificationEvent() {
+        _notificationEvent.value = null
+    }
 }

@@ -1,4 +1,3 @@
-//FirebaseMessageService.kt
 package com.example.commercialcatalog.notifications
 
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -6,22 +5,19 @@ import com.google.firebase.messaging.RemoteMessage
 import android.util.Log
 
 class FirebaseMessageService : FirebaseMessagingService() {
+
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+        Log.d("FCM", "Nuevo token: $token")
+    }
+
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        Log.d("FCM", "Mensaje recibido: ${remoteMessage.data}")
+        super.onMessageReceived(remoteMessage)
+        val title = remoteMessage.notification?.title ?: "Notificación"
+        val body = remoteMessage.notification?.body ?: "Has recibido una nueva notificación"
 
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as android.app.NotificationManager
-        val channelId = "default_channel"
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            val channel = android.app.NotificationChannel(channelId, "Notificaciones", android.app.NotificationManager.IMPORTANCE_DEFAULT)
-            notificationManager.createNotificationChannel(channel)
-        }
+        Log.d("FCM", "Message received: $title - $body")
 
-        val notification = androidx.core.app.NotificationCompat.Builder(this, channelId)
-            .setContentTitle(remoteMessage.notification?.title ?: "Título")
-            .setContentText(remoteMessage.notification?.body ?: "Mensaje recibido")
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
-            .build()
-
-        notificationManager.notify(1, notification)
+        NotificationHandler.showLocalNotification(applicationContext, title, body)
     }
 }

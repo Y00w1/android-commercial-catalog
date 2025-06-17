@@ -14,8 +14,12 @@ import com.example.commercialcatalog.viewModel.TaskViewModel
 import com.example.commercialcatalog.view.components.HeaderBar
 import com.example.commercialcatalog.view.todo.components.TaskItem
 import androidx.compose.foundation.lazy.items
+import androidx.compose.ui.platform.LocalContext
 import com.example.commercialcatalog.model.Task
-
+import com.example.commercialcatalog.notifications.NotificationHandler
+import kotlinx.coroutines.flow.collectLatest
+import androidx.compose.ui.platform.LocalContext
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun TaskScreen(
@@ -29,7 +33,15 @@ fun TaskScreen(
     var taskToEdit by remember { mutableStateOf<Task?>(null) }
     var editedTitle by remember { mutableStateOf("") }
 
-    LaunchedEffect(Unit) { taskViewModel.loadTasks() }
+    val context = LocalContext.current
+    val notificationEvent by taskViewModel.notificationEvent.collectAsState()
+
+    LaunchedEffect(notificationEvent) {
+        notificationEvent?.let { (title, message) ->
+            NotificationHandler.showLocalNotification(context, title, message)
+            taskViewModel.clearNotificationEvent()
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -71,7 +83,7 @@ fun TaskScreen(
                     TaskItem(
                         task = task,
                         onToggle = { taskViewModel.toggleTask(it) },
-                        onDelete = { taskViewModel.deleteTask(it) },
+                        onDelete = { taskViewModel.deleteTask(it, task.title) },
                         onEdit = {
                             taskToEdit = it
                             editedTitle = it.title
